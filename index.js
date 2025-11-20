@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 dotenv.config();
 import express from 'express';
 import helmet from 'helmet';
+import cors from 'cors';
 import postRoutes from './src/routes/post.routes.js';
 import userRoutes from './src/routes/user.routes.js';
 import commentRoutes from './src/routes/comment.routes.js';
@@ -18,6 +19,10 @@ app.use(express.json());
 
 // For HTTP headers through helmet
 app.use(helmet());
+
+app.use(cors({
+  origin: "http://localhost:5173"
+}));
 
 // Making 'uploads' accessible
 app.use('/uploads', express.static('uploads'));

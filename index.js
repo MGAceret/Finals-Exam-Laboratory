@@ -4,6 +4,7 @@ dotenv.config();
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
+import rateLimit from 'express-rate-limit';
 import postRoutes from './src/routes/post.routes.js';
 import userRoutes from './src/routes/user.routes.js';
 import commentRoutes from './src/routes/comment.routes.js';
@@ -23,6 +24,16 @@ app.use(helmet());
 app.use(cors({
   origin: "http://localhost:5173"
 }));
+
+const globalLimiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 5,                  // max 5 requests per IP per window
+  message: "Too many requests, try again later."
+});
+
+// Apply to all routes
+app.use(globalLimiter);
+
 
 // Making 'uploads' accessible
 app.use('/uploads', express.static('uploads'));

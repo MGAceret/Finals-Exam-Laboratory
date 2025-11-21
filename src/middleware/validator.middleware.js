@@ -30,10 +30,6 @@ export const validateComment = [
         .notEmpty()
         .withMessage('Comment is required.'),
 
-    body('authorId')
-        .isInt({ min: 1 })
-        .withMessage('A valid author ID is required'),
-
     // Validation Result Handler
     (req, res, next) => {
         const errors = validationResult(req);

@@ -21,10 +21,11 @@ export const getCommentsByPostId = asyncHandler(async (req, res) => {
 
 export const createCommentForPost = asyncHandler(async (req, res) => {
     const postId = parseInt(req.params.postId, 10);
-    const { text, authorId } = req.body;
+    const { text } = req.body;
+    const authorId = req.user.id;
 
-    if (!text || !authorId) {
-        return res.status(400).json(new ApiResponse(400, null, 'Both text and authorId are required.'));
+    if (!text) {
+        return res.status(400).json(new ApiResponse(400, null, 'A comment is required.'));
     }
 
     const newComment = await commentService.createComment(postId, authorId, { text });

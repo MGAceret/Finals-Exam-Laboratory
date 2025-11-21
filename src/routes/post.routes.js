@@ -14,8 +14,8 @@ import { createPost } from '../controllers/post.controller.js';
 const router = Router();
 
 
-router.put('/:id', validatePost, postController.updatePost);
-router.patch('/:id', postController.partiallyUpdatePost);
+//router.put('/:id', validatePost, postController.updatePost);
+//router.patch('/:id', postController.partiallyUpdatePost);
 
 
 
@@ -24,11 +24,12 @@ router.get('/:id', postController.getPostById);
 // router.put('/:id', updatePostRules, postController.updatePost);
 // router.delete('/:id', postController.deletePost);
 
-router.post('/:postId/comments', validateComment, createCommentForPost);
+router.post('/:postId/comments', authMiddleware, validateComment, createCommentForPost);
 
 // Protected Routes
 router.post('/', authMiddleware, validatePost, postController.createPost);
 router.put('/:id', authMiddleware, validatePost, postController.updatePost);
+router.patch('/:id', authMiddleware, postController.partiallyUpdatePost);
 router.delete('/:id', authMiddleware, postController.deletePost);
 
 export default router;

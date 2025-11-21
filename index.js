@@ -31,7 +31,7 @@ app.use(cors({
 
 const globalLimiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
-  max: 100,                  // max 5 requests per IP per window
+  max: 100,                  // max 100 requests per IP per window
   message: "Too many requests, try again later."
 });
 

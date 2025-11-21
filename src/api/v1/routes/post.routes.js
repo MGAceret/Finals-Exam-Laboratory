@@ -11,8 +11,8 @@ const router = Router();
 /**
  * @swagger
  * tags:
- *   name: Posts
- *   description: API endpoints for managing posts (v1)
+ *   name: Posts (v1)
+ *   description: v1 Post Endpoints
  */
 
 /**
@@ -20,7 +20,7 @@ const router = Router();
  * /api/v1/posts:
  *   get:
  *     summary: Retrieve all posts
- *     tags: [Posts]
+ *     tags: [Posts (v1)]
  *     responses:
  *       200:
  *         description: List of all posts
@@ -48,7 +48,7 @@ router.get('/', postController.getAllPosts);
  * /api/v1/posts:
  *   post:
  *     summary: Create a new post
- *     tags: [Posts]
+ *     tags: [Posts (v1)]
  *     requestBody:
  *       required: true
  *       content:
@@ -76,7 +76,7 @@ router.post('/', createPostRules, postController.createPost);
  * /api/v1/posts/{id}:
  *   get:
  *     summary: Get a post by ID
- *     tags: [Posts]
+ *     tags: [Posts (v1)]
  *     parameters:
  *       - in: path
  *         name: id
@@ -95,7 +95,7 @@ router.get('/:id', postController.getPostById);
  * /api/v1/posts/{id}:
  *   put:
  *     summary: Update a post
- *     tags: [Posts]
+ *     tags: [Posts (v1)]
  *     parameters:
  *       - in: path
  *         name: id
@@ -125,7 +125,7 @@ router.put('/:id', updatePostRules, postController.updatePost);
  * /api/v1/posts/{id}:
  *   delete:
  *     summary: Delete a post
- *     tags: [Posts]
+ *     tags: [Posts (v1)]
  *     parameters:
  *       - in: path
  *         name: id
@@ -134,7 +134,7 @@ router.put('/:id', updatePostRules, postController.updatePost);
  *         required: true
  *         description: Post ID
  *     responses:
- *       200:
+ *       204:
  *         description: Post deleted successfully
  */
 router.delete('/:id', postController.deletePost);

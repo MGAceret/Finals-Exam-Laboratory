@@ -20,7 +20,10 @@ export const createPostRules = [
     body('body')
         .isString().withMessage('Content must be a string.')
         .trim()
-        .notEmpty().withMessage('Content is required.')
+        .notEmpty().withMessage('Content is required.'),
+    body('authorId')   // <-- ADD THIS
+        .isInt({ min: 1 }).withMessage('authorId must be a positive integer.')
+        .notEmpty().withMessage('authorId is required.')
 ];
 
 export const updatePostRules = [
